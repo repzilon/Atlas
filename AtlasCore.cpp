@@ -4,6 +4,7 @@
 //-----------------------------------------------------------------------------
 
 #include "stdafx.h"
+#include <cstdio>
 #include <string>
 #include <cmath>
 #include <vector>
@@ -24,6 +25,10 @@
 #include "AtlasStats.h"
 #include "PointerHandler.h"
 #include "AtlasExtension.h"
+
+#ifndef _snprintf
+	#define _snprintf snprintf
+#endif
 
 using namespace std;
 
@@ -788,7 +793,7 @@ bool AtlasCore::ExecuteCommand(Command& Cmd)
 	case CMD_WARN:
 		if ((ftell(File.GetFileT()) - 1) > StringToUInt(Cmd.Parameters[0].Value))
 		{
-			printf("BARF %d bytes @ %s - %s\n",
+			printf("BARF %ld bytes @ %s - %s\n",
 				(ftell(File.GetFileT()) - 1) - StringToUInt(Cmd.Parameters[0].Value), Cmd.Parameters[0].Value.c_str(), Cmd.Parameters[1].Value.c_str());
 		}
 		else
@@ -818,7 +823,7 @@ bool AtlasCore::ActivateTable(std::string& TableName)
 	{
 		ostringstream ErrorStr;
 		ErrorStr << "Uninitialized variable " << TableName << " used";
-		Logger.ReportError(CurrentLine, "Uninitialized variable '%s' used", TableName);
+		Logger.ReportError(CurrentLine, "Uninitialized variable '%s' used", TableName.c_str());
 		return false;
 	}
 	else
@@ -919,7 +924,7 @@ bool AtlasCore::ExecuteExtension(std::string& ExtId, std::string& FunctionName,
 		}
 		else
 		{
-			Logger.ReportError(CurrentLine, "EXTEXEC   Extension function '%s' returning WRITE_POINTER has an unsupported PointerSize field", FunctionName);
+			Logger.ReportError(CurrentLine, "EXTEXEC   Extension function '%s' returning WRITE_POINTER has an unsupported PointerSize field", FunctionName.c_str());
 			Success = false;
 		}
 	}
@@ -1011,7 +1016,11 @@ __int64 StringToInt64(string& NumberString)
 	__int64 Num = 0;
 	bool bNeg = false;
 	size_t Pos = 0;
+#if __clang__
+	unsigned long long Mult;
+#else
 	unsigned __int64 Mult;
+#endif
 
 	if(NumberString[Pos] == '$') // hex
 	{

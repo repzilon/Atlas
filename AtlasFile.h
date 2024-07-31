@@ -52,7 +52,11 @@ public:
 	bool FlushText();
 
 	inline unsigned int SetMaxWritableBytes(const unsigned int ScriptBound);
+#ifdef __clang__
+	unsigned int GetMaxWritableBytes();
+#else
 	inline unsigned int GetMaxWritableBytes();
+#endif
 	FILE* GetFileT();
 	FILE* GetFileP();
 	void GetScriptBuf(list<TBL_STRING>& Strings);

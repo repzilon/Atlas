@@ -5,6 +5,10 @@
 #include <cstdarg>
 #include "AtlasLogger.h"
 
+#ifndef _vsnprintf
+	#define _vsnprintf vsnprintf
+#endif
+
 using namespace std;
 
 AtlasLogger Logger;

@@ -1,9 +1,15 @@
 #pragma once
 #include <string>
 #include <list>
+#ifdef _WIN32
 #include <windows.h>
+#endif
 #include "Table.h"
 #include "GenericVariable.h"
+
+#ifndef HMODULE
+	#define HMODULE void *
+#endif
 
 const unsigned int MAX_RETURN_VAL = 3;
 

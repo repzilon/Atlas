@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include <string>
+#ifdef _WIN32
 #include <windows.h>
+#else
+#include <dlfcn.h>
+#endif
 #include "AtlasExtension.h"
 #include "AtlasLogger.h"
 #include "AtlasCore.h"
@@ -86,13 +90,22 @@ AtlasExtension::AtlasExtension() : Extension(NULL)
 
 AtlasExtension::~AtlasExtension()
 {
-	if(Extension)
+	if(Extension) {
+#ifdef _WIN32
 		FreeLibrary(Extension);
+#else
+		dlclose(Extension);
+#endif
+	}
 }
 
 bool AtlasExtension::LoadExtension(string& ExtensionName)
 {
+#ifdef _WIN32
 	Extension = LoadLibraryA(ExtensionName.c_str());
+#else
+	Extension = dlopen(ExtensionName.c_str(), RTLD_LAZY);
+#endif
 	
 	if(Extension)
 		return true;
@@ -113,7 +126,11 @@ ExtensionFunction AtlasExtension::GetFunction(string& FunctionName)
 	if(NULL == Extension)
 		return NULL;
 
+#ifdef _WIN32
 	ExtensionFunction func = (ExtensionFunction)GetProcAddress(Extension, FunctionName.c_str());
+#else
+	ExtensionFunction func = (ExtensionFunction)dlsym(Extension, FunctionName.c_str());
+#endif
 
 	return func;
 }

@@ -8,7 +8,11 @@
 
 using namespace std;
 
+#ifdef _WIN32
 int _tmain(int argc, _TCHAR* argv[])
+#else
+int main(int argc, char* argv[])
+#endif
 {
 	clock_t StartTime, EndTime, ElapsedTime;
 	int argoff = 0;

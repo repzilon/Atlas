@@ -237,7 +237,7 @@ bool AtlasFile::DisableAutoExtension(string& FuncName, string& EndTag)
 	it = ExtAutoWrite.find(EndTag);
 	if(it == ExtAutoWrite.end())
 	{
-		Logger.ReportError(CurrentLine, "'%s' has not been defined as an autoexec end token", EndTag);
+		Logger.ReportError(CurrentLine, "'%s' has not been defined as an autoexec end token", EndTag.c_str());
 		return false;
 	}
 	ExtAutoWrite.erase(it);
@@ -283,12 +283,12 @@ bool AtlasFile::AutoWrite(AtlasExtension* Ext, string& FuncName, string& EndTag)
 	Func = Ext->GetFunction(FuncName);
 	if(!EndTokenFound)
 	{
-		Logger.ReportError(CurrentLine, "'%s' has not been defined as an end token in the active table", EndTag);
+		Logger.ReportError(CurrentLine, "'%s' has not been defined as an end token in the active table", EndTag.c_str());
 		return false;
 	}
 	if(Func == NULL)
 	{
-		Logger.ReportError(CurrentLine, "Function 's' could not be found in the extension", FuncName);
+		Logger.ReportError(CurrentLine, "Function 's' could not be found in the extension", FuncName.c_str());
 		return false;
 	}
 
@@ -374,7 +374,7 @@ bool AtlasFile::FlushText()
 				Context = NULL;
 				if(!Success)
 				{
-					Logger.ReportError(CurrentLine, "Autoexecuting extension with end token '%s' failed", i->EndToken);
+					Logger.ReportError(CurrentLine, "Autoexecuting extension with end token '%s' failed", i->EndToken.c_str());
 					return false;
 				}
 				else
@@ -477,7 +477,8 @@ inline unsigned int AtlasFile::WritePascalString(string& text)
 		}
 		else
 		{
-			goto nowrite;
+			//goto nowrite;
+			return size+PascalLength;
 		}
 	}
 
@@ -530,7 +531,11 @@ inline unsigned int AtlasFile::SetMaxWritableBytes(const unsigned int ScriptBoun
 	MaxScriptPos = ScriptBound;
 }
 
+#ifdef __clang__
+unsigned int AtlasFile::GetMaxWritableBytes()
+#else
 inline unsigned int AtlasFile::GetMaxWritableBytes()
+#endif
 {
 	if(MaxScriptPos == -1)
 		return -1;

@@ -1,6 +1,10 @@
 #pragma once
 #include <list>
 
+#ifndef __int64
+	#define __int64 __int64_t
+#endif
+
 // MachineAddresses- The type of addressing the machine uses
 static const unsigned int MA_INVALID = 0;
 static const unsigned int LINEAR = 1;
@@ -23,15 +27,15 @@ public:
 	void SetHeaderSize(const unsigned int Size);
 
 	// Pointer writing functions
-	unsigned short Pointer::Get16BitPointer(const unsigned int ScriptPos) const;
-	unsigned int Pointer::Get24BitPointer(const unsigned int ScriptPos) const;
-	unsigned int Pointer::Get32BitPointer(const unsigned int ScriptPos) const;
+	unsigned short Get16BitPointer(const unsigned int ScriptPos) const;
+	unsigned int Get24BitPointer(const unsigned int ScriptPos) const;
+	unsigned int Get32BitPointer(const unsigned int ScriptPos) const;
 
-	unsigned char Pointer::GetLowByte(const unsigned int ScriptPos) const;
-	unsigned char Pointer::GetHighByte(const unsigned int ScriptPos) const;
-	unsigned char Pointer::GetBankByte(const unsigned int ScriptPos) const;
-	unsigned char Pointer::GetUpperByte(const unsigned int ScriptPos) const;
-	unsigned int Pointer::GetHighWord(const unsigned int ScriptPos) const;
+	unsigned char GetLowByte(const unsigned int ScriptPos) const;
+	unsigned char GetHighByte(const unsigned int ScriptPos) const;
+	unsigned char GetBankByte(const unsigned int ScriptPos) const;
+	unsigned char GetUpperByte(const unsigned int ScriptPos) const;
+	unsigned int GetHighWord(const unsigned int ScriptPos) const;
 
 protected:
 	unsigned int AddressType;

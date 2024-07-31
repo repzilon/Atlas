@@ -143,7 +143,7 @@ inline void AtlasParser::AddText(string& text)
 inline bool AtlasParser::ParseCommand(string& line)
 {
 	if(line[0] != '#')
-		printf("Bug, %s %d.  Should start with a '#'\n'%s'", __FILE__, __LINE__, line);
+		printf("Bug, %s %d.  Should start with a '#'\n'%s'", __FILE__, __LINE__, line.c_str());
 
 	size_t curpos = 1;
 	std::string CmdStr;
