@@ -1,3 +1,3 @@
 Atlas is a dedicated, extensible script insertion utility capable of dealing with scripts of advanced complexity. (Shamelessly stolen from RNH.net.  See https://www.romhacking.net/utilities/224/ for the original).
 
-My version includes fixes for embedded pointers and parsing tables.  I also added the abillity to automatically jump to the end of a file using #JMP(-1).  I've included additions from g8tzetal's versions for file insertion and also putting in warnings when going past a spot (#WARN($POS, "COMMENT_HERE")) when inserting (#INSERT("FILENAME", "ID")). 
+My version includes fixes for embedded pointers and parsing tables.  I also added the ability to automatically jump to the end of a file using #JMP(-1).  I've included additions from g8tzetal's versions for file insertion and also putting in warnings when going past a spot (#WARN($POS, "COMMENT_HERE")) when inserting (#INSERT("FILENAME", "ID")).
