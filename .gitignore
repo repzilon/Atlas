@@ -2,3 +2,5 @@
 .idea
 Atlas.exe
 atlas
+*.suo*
+UpgradeLog*.XML
