@@ -6,3 +6,9 @@ atlas
 UpgradeLog*.XML
 /Debug
 /Release
+cmake-build-*
+CMakeCache.txt
+cmake_install.cmake
+build
+CMakeFiles
+Makefile

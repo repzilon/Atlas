@@ -1,0 +1,12 @@
+clean:
+	$(MAKE) clean
+
+distclean: clean
+	rm -f Makefile
+	rm -f *.user
+	rm -f CMakeCache.txt
+	rm -f cmake_install.cmake
+	rm -rf CMakeFiles
+	rm -rf cmake-build*
+
+.PHONY: clean distclean
