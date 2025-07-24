@@ -9,6 +9,7 @@
 #include <stdio.h>
 #ifdef _WIN32
 #include <tchar.h>
+#include <stdint.h>
 #endif
 
 // TODO: reference additional headers your program requires here

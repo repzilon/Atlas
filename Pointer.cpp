@@ -178,7 +178,7 @@ unsigned int Pointer::GetHighWord(const unsigned int ScriptPos) const
 //                                                                           \\
 //                                                                           \\
 
-bool CustomPointer::Init(__int64 Offsetting, unsigned int Size, unsigned int HeaderSize)
+bool CustomPointer::Init(int64_t Offsetting, unsigned int Size, unsigned int HeaderSize)
 {
 	this->Offsetting = Offsetting;
 	SetHeaderSize(HeaderSize);
@@ -201,7 +201,7 @@ unsigned int CustomPointer::GetSize()
 unsigned int CustomPointer::GetAddress(const unsigned int Address) const
 {
 	unsigned int Val;
-	Val = (unsigned int) ((__int64)GetMachineAddress(Address) - Offsetting);
+	Val = (unsigned int) ((int64_t)GetMachineAddress(Address) - Offsetting);
 	switch(Size)
 	{
 	case 8:
@@ -261,7 +261,7 @@ unsigned int EmbeddedPointer::GetSize() const
 	return Size;
 }
 
-void EmbeddedPointer::SetOffsetting(const __int64 Offsetting)
+void EmbeddedPointer::SetOffsetting(const int64_t Offsetting)
 {
 	this->Offsetting = Offsetting;
 }
@@ -355,7 +355,7 @@ bool EmbeddedPointerHandler::GetPointerState(const unsigned int PointerNum, unsi
 		return true;
 }
 
-bool EmbeddedPointerHandler::SetType(std::string& AddressString, const __int64 Offsetting, const unsigned int PointerSize)
+bool EmbeddedPointerHandler::SetType(std::string& AddressString, const int64_t Offsetting, const unsigned int PointerSize)
 {
 	this->Offsetting = Offsetting;
 	switch(PointerSize)

@@ -7,10 +7,6 @@
 #include "Table.h"
 #include "GenericVariable.h"
 
-#ifndef HMODULE
-	#define HMODULE void *
-#endif
-
 const unsigned int MAX_RETURN_VAL = 3;
 
 const unsigned int NO_ACTION = 0;
@@ -55,5 +51,9 @@ public:
 	ExtensionFunction GetFunction(std::string& FunctionName);
 
 private:
+#if _WIN32
 	HMODULE Extension;
+#else
+	void* Extension;
+#endif
 };

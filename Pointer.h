@@ -1,10 +1,6 @@
 #pragma once
 #include <list>
 
-#ifndef __int64
-	#define __int64 __int64_t
-#endif
-
 // MachineAddresses- The type of addressing the machine uses
 static const unsigned int MA_INVALID = 0;
 static const unsigned int LINEAR = 1;
@@ -53,11 +49,11 @@ private:
 class CustomPointer : public virtual Pointer
 {
 public:
-	bool Init(__int64 Offsetting, unsigned int Size, unsigned int HeaderSize);
+	bool Init(int64_t Offsetting, unsigned int Size, unsigned int HeaderSize);
 	unsigned int GetSize();
 	unsigned int GetAddress(const unsigned int Address) const;
 private:
-	__int64 Offsetting;
+	int64_t Offsetting;
 	unsigned int Size;
 };
 
@@ -70,14 +66,14 @@ public:
 	bool SetTextPosition(const unsigned int Address);
 	bool SetPointerPosition(const unsigned int Address);
 	void SetSize(const unsigned int size);
-	void SetOffsetting(const __int64 Offsetting);
+	void SetOffsetting(const int64_t Offsetting);
 
 	unsigned int GetTextPosition() const;
 	unsigned int GetPointer() const;
 	unsigned int GetPointerPosition() const;
 	unsigned int GetSize() const;
 private:
-	__int64 Offsetting;
+	int64_t Offsetting;
 	unsigned int TextPos;
 	unsigned int PointerPos;
 	unsigned int Size;
@@ -94,7 +90,7 @@ public:
 	void SetListSize(int Size);
 	int GetListSize();
 	bool GetPointerState(const unsigned int PointerNum, unsigned int& TextPos, unsigned int& PointerPos);
-	bool SetType(std::string& AddressString, const __int64 Offsetting, const unsigned int PointerSize);
+	bool SetType(std::string& AddressString, const int64_t Offsetting, const unsigned int PointerSize);
 	unsigned int GetDefaultSize();
 	bool SetTextPosition(const unsigned int PointerNum, const unsigned int TextPos);
 	bool SetPointerPosition(const unsigned int PointerNum, const unsigned int PointerPos);
@@ -109,7 +105,7 @@ public:
 private:
 	std::vector<EmbeddedPointer> PtrList;
 	unsigned int AddressType;
-	__int64 Offsetting;
+	int64_t Offsetting;
 	unsigned int PtrSize;
 	unsigned int HdrSize;
 };

@@ -16,7 +16,7 @@ PointerHandler::PointerHandler(VariableMap* Map)
 }
 
 bool PointerHandler::CreatePointer(std::string& PtrId, std::string& AddressType,
-		__int64 Offsetting,	unsigned int Size, unsigned int HeaderSize)
+		int64_t Offsetting,	unsigned int Size, unsigned int HeaderSize)
 {
 	CustomPointer* Ptr = (CustomPointer*)Map->GetVar(PtrId)->GetData();
 	if(Ptr != NULL) // Already initialized

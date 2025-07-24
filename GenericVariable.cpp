@@ -57,7 +57,7 @@ bool GenericVariable::Free()
 		delete (string*)DataPointer;
 		break;
 	case P_NUMBER:
-		delete (__int64*)DataPointer;
+		delete (int64_t*)DataPointer;
 		break;
 	case P_DOUBLE:
 		delete (double*)DataPointer;

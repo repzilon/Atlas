@@ -11,7 +11,7 @@ class PointerHandler
 public:
 	PointerHandler(VariableMap* Map);
 	bool CreatePointer(string& PtrId, string& AddressType,
-		__int64 Offsetting,	unsigned int Size, unsigned int HeaderSize);
+		int64_t Offsetting,	unsigned int Size, unsigned int HeaderSize);
 	unsigned int GetPtrAddress(string& PtrId, unsigned int ScriptPos, unsigned int& Size);
 	bool CreatePointerList(string& ListId, const char* Filename, string& PtrId);
 	bool CreatePointerTable(string& TblId, unsigned int Start, unsigned int Increment,

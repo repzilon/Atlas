@@ -1031,16 +1031,12 @@ unsigned int StringToUInt(std::string& NumberString)
 // Status - Works+Fixed
 //-----------------------------------------------------------------------------
 
-__int64 StringToInt64(string& NumberString)
+int64_t StringToInt64(string& NumberString)
 {
-	__int64 Num = 0;
+	int64_t Num = 0;
 	bool bNeg = false;
 	size_t Pos = 0;
-#if __clang__
-	unsigned long long Mult;
-#else
-	unsigned __int64 Mult;
-#endif
+	int64_t Mult;
 
 	if(NumberString[Pos] == '$') // hex
 	{

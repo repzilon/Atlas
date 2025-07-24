@@ -4,3 +4,5 @@ Atlas.exe
 atlas
 *.suo*
 UpgradeLog*.XML
+/Debug
+/Release
